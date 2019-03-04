@@ -1,7 +1,8 @@
 module.exports = {
  repair,
- item, 
- success
+ item,
+ success,
+ fail,
 };
 
 function item(attributes) {
@@ -17,6 +18,31 @@ function repair(item) {
 }
 
 function success(item) {
-    item.enhancement = 1;
+    if (item.enhancement >= 0 && item.enhancement <= 14) {
+        item.enhancement = item.enhancement + 1;
+    }   
+   
+
+    //must be stacked in reverse (biggest to smallest) to work or put in return statements
+    if (item.enhancement === 'TET') {
+        item.enhancement = 'PEN';
+    }
+    if (item.enhancement === 'TRI') {
+        item.enhancement = 'TET';
+    }
+    if (item.enhancement === 'DUO') {
+        item.enhancement = 'TRI';
+    }
+    if (item.enhancement === 'PRI') {
+        item.enhancement = 'DUO';
+    }   else if (item.enhancement === 15) {
+            item.enhancement = 'PRI';
+        }
+    
     return item;
+}
+
+function fail(item) {
+    
+    
 }
